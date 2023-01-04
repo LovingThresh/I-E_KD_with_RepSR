@@ -19,6 +19,7 @@ class AT(nn.Module):
     as partly pointed out at https://github.com/szagoruyko/attention-transfer/issues/34
     To follow the equations in the paper, use mode='paper' in place of 'code'
     """
+
     def __init__(self, mode='code'):
         super().__init__()
         self.mode = mode
@@ -39,7 +40,9 @@ class AT(nn.Module):
             attention_student = self.attention_transfer(student_feature_map)
             attention_teacher = self.attention_transfer(teacher_feature_map)
         else:
-            attention_student = self.attention_transfer_paper(student_feature_map)
-            attention_teacher = self.attention_transfer_paper(teacher_feature_map)
+            attention_student = self.attention_transfer_paper(
+                student_feature_map)
+            attention_teacher = self.attention_transfer_paper(
+                teacher_feature_map)
 
         return attention_student, attention_teacher
